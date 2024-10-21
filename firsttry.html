@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search the Web</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .search-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Search the Web</h1>
+
+    <div class="search-container">
+        <input type="text" id="searchQuery" placeholder="Enter your search term...">
+        <button onclick="searchWeb()">Search</button>
+    </div>
+
+    <script>
+        function searchWeb() {
+            const query = document.getElementById("searchQuery").value;
+            if (query) {
+                const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                window.open(url, '_blank'); // Opens search results in a new tab
+            }
+        }
+    </script>
+</body>
+</html>
