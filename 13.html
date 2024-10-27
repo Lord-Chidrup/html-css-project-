@@ -239,7 +239,7 @@
             </div>
 
             <div id="result"></div>
-            <div id="imageResult"></div> <!-- Container for images -->
+            <div id="imageResult"></div> 
         </div>
 
         <div class="sidebar right-sidebar">
@@ -265,14 +265,14 @@
                     const response = await fetch(suggestionsUrl);
                     const data = await response.json();
 
-                    const suggestions = data[1]; // The second element in the response contains the suggestions
+                    const suggestions = data[1]; 
                     if (suggestions.length > 0) {
                         suggestions.forEach(suggestion => {
                             const suggestionDiv = document.createElement('div');
                             suggestionDiv.textContent = suggestion;
                             suggestionDiv.onclick = () => {
                                 document.getElementById("searchQuery").value = suggestion;
-                                suggestionsDiv.innerHTML = ''; // Clear suggestions when clicked
+                                suggestionsDiv.innerHTML = ''; 
                                 searchWiki();
                             };
                             suggestionsDiv.appendChild(suggestionDiv);
@@ -288,8 +288,8 @@
             const query = document.getElementById("searchQuery").value.trim();
             const resultDiv = document.getElementById("result");
             const imageResultDiv = document.getElementById("imageResult");
-            resultDiv.innerHTML = ""; // Clear previous results
-            imageResultDiv.innerHTML = ""; // Clear previous images
+            resultDiv.innerHTML = "";
+            imageResultDiv.innerHTML = ""; 
 
             if (query) {
                 const searchUrl = `https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srsearch=${encodeURIComponent(query)}`;
@@ -311,7 +311,7 @@
                             <div>${content}</div>
                         `;
 
-                        // Fetch images related to the topic
+                        
                         const imageSearchUrl = `https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(title)}&prop=pageimages&format=json&origin=*`;
                         const imageResponse = await fetch(imageSearchUrl);
                         const imageData = await imageResponse.json();
@@ -322,7 +322,7 @@
                             resultDiv.prepend(image);
                         }
 
-                        // Fetch additional images
+                        
                         const additionalImageUrl = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(query)}&srlimit=5&format=json&origin=*`;
                         const additionalImageResponse = await fetch(additionalImageUrl);
                         const additionalImageData = await additionalImageResponse.json();
@@ -330,7 +330,7 @@
                         additionalImageData.query.search.forEach(item => {
                             const imgUrl = `https://en.wikipedia.org/wiki/File:${item.title.replace(/ /g, '_')}.jpg`;
                             const img = document.createElement('img');
-                            img.src = imgUrl; // URL might need adjustment depending on availability
+                            img.src = imgUrl; 
                             imageResultDiv.appendChild(img);
                         });
                     } else {
